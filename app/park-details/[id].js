@@ -103,6 +103,7 @@ const ParkDetails = () => {
               ))}
             </View>
           </View>
+          <View></View>
         </View>
       </ScrollView>
     </SafeAreaView>
