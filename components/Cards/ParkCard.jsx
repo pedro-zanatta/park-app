@@ -3,7 +3,12 @@ import { Text, View, TouchableOpacity, Image } from "react-native";
 const ParkCard = ({ park, handleCardPress }) => {
   return (
     <TouchableOpacity onPress={() => handleCardPress(park)}>
-      <View style={{ alignItems: "center" }}>
+      <View
+        style={{
+          alignItems: "center",
+          width: "100px",
+        }}
+      >
         <Image
           source={{
             uri: park.logo,
@@ -13,7 +18,13 @@ const ParkCard = ({ park, handleCardPress }) => {
         />
 
         <Text numberOfLines={1}>{park?.name}</Text>
-        <Text>{park?.description}</Text>
+        <Text
+          style={{
+            textAlign: "center",
+          }}
+        >
+          {park?.description}
+        </Text>
       </View>
     </TouchableOpacity>
   );
