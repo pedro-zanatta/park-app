@@ -1,6 +1,6 @@
 import { TextInput, View, TouchableOpacity } from "react-native";
 import { useState } from "react";
-import styles from "../../styles/components/homePage";
+import styles from "../../styles/homePage";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const SearchParkInput = ({ searchTerm, setSearchedPark }) => {
@@ -18,7 +18,7 @@ const SearchParkInput = ({ searchTerm, setSearchedPark }) => {
         style={styles.searchButton}
         onPress={() => setSearchedPark(searchedText)}
       >
-        <FontAwesome5 name="search" color="white" solid />
+        <FontAwesome5 name="search" color="white" solid size="16px" />
       </TouchableOpacity>
     </View>
   );
