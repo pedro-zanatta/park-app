@@ -8,6 +8,15 @@
       "expo-router"
     ],
     "name": "app",
-    "slug": "app"
+    "slug": "park-app",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "25bb80b5-ab1c-4325-8b58-35ee24586a31"
+      }
+    },
+    "owner": "devpedro123"
   }
 }
