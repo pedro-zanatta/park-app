@@ -112,18 +112,6 @@ const ParkDetails = () => {
               {menuTab === "geral" ? (
                 <View style={{ gap: 72 }}>
                   <View style={{ gap: 16 }}>
-                    <Text style={{ fontWeight: "600" }}>Video</Text>
-                    <View
-                      style={{
-                        flex: 1,
-                        backgroundColor: "#fff",
-                        height: 195,
-                      }}
-                    >
-                      <YoutubeIFrame height={195} videoId={park.video} />
-                    </View>
-                  </View>
-                  <View style={{ gap: 16 }}>
                     <Text style={{ fontWeight: "600" }}>Imagens do parque</Text>
                     <View
                       style={{ flex: 3, width: "100%", alignItems: "center" }}
@@ -165,6 +153,18 @@ const ParkDetails = () => {
                     </View>
                   </View>
                   <View style={{ gap: 16 }}>
+                    <Text style={{ fontWeight: "600" }}>Video</Text>
+                    <View
+                      style={{
+                        flex: 1,
+                        backgroundColor: "#fff",
+                        height: 195,
+                      }}
+                    >
+                      <YoutubeIFrame height={195} videoId={park.video} />
+                    </View>
+                  </View>
+                  <View style={{ gap: 16 }}>
                     <Text style={{ fontWeight: "600" }}>No mapa</Text>
                     <View
                       style={{
@@ -199,6 +199,18 @@ const ParkDetails = () => {
                       <Text style={{ fontWeight: "600" }}>TikTok: </Text>
                       <Text>{park.socialMediaLinks?.tiktok}</Text>
                     </View>
+                  </View>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>Website</Text>
+                    <Text>{park.time}</Text>
+                  </View>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>Website</Text>
+                    <Text>{park.ticketPrice}</Text>
+                  </View>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>Website</Text>
+                    <Text>{park.time}</Text>
                   </View>
                 </View>
               )}
