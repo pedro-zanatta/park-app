@@ -7,25 +7,43 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../../styles/parkDetailsPage";
 import { Stack, useSearchParams, useRouter } from "expo-router";
 import HeaderBackButton from "../../components/Buttons/HeaderBackButton";
+import YoutubeIFrame from "react-native-youtube-iframe";
+import MapView, { Marker } from "react-native-maps";
 
 const jsonData = require("../../data/parksData.json");
 
 const ParkDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
-  const { width, height } = Dimensions.get("window");
+  const { width } = Dimensions.get("window");
   const [menuTab, setMenuTab] = useState("geral");
+  const [isLoading, setIsLoading] = useState(true);
   const [imgActive, setimgActive] = useState(0);
+  const [park, setPark] = useState();
+  const imagesArray = park?.images;
+  const mapRegion = {
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
   const filteredData = jsonData.filter(
     (park) => park.id.toString() === params.id
   );
-  const park = filteredData[0];
-  console.log(park, "park");
-  const imagesArray = park.images;
+
+  useEffect(() => {
+    async function loadPark() {
+      const park = await filteredData[0];
+      console.log(park);
+      setPark(park);
+      setIsLoading(false);
+    }
+    loadPark();
+  }, []);
 
   onchange = (nativeEvent) => {
     if (nativeEvent) {
@@ -49,112 +67,145 @@ const ParkDetails = () => {
           headerTitle: "",
         }}
       />
-
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ padding: "20px", paddingBottom: 100 }}>
-          <View
-            style={{
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={{
-                uri: park.logo,
+      {isLoading ? (
+        <Text>Loading</Text>
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{ padding: 20, paddingBottom: 100 }}>
+            <View
+              style={{
+                alignItems: "center",
               }}
-              style={{ width: "100px", height: "100px" }}
-              resizeMode="contain"
-            />
-            <Text style={{ fontWeight: "600" }}>{park.name}</Text>
-          </View>
-          <View style={{ flexDirection: "row", gap: "8px" }}>
-            <TouchableOpacity
-              style={styles.menuButton(menuTab === "geral")}
-              onPress={() => setMenuTab("geral")}
             >
-              <Text>Geral</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menuButton(menuTab === "contato")}
-              onPress={() => setMenuTab("contato")}
+              <Image
+                source={{
+                  uri: park.logo,
+                }}
+                style={{ width: 100, height: 100 }}
+                resizeMode="contain"
+              />
+              <Text style={{ fontWeight: "600" }}>{park.name}</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 8,
+                alignItems: "center",
+                marginTop: 20,
+              }}
             >
-              <Text>Contato</Text>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                style={styles.menuButton(menuTab === "geral")}
+                onPress={() => setMenuTab("geral")}
+              >
+                <Text>Geral</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.menuButton(menuTab === "contato")}
+                onPress={() => setMenuTab("contato")}
+              >
+                <Text>Contato</Text>
+              </TouchableOpacity>
+            </View>
 
-          <View style={{ marginTop: "40px", gap: "24px" }}>
-            {menuTab === "geral" ? (
-              <>
-                <View style={{ gap: "32px" }}>
-                  <Text>Imagens do parque</Text>
-                  <View
-                    style={{ flex: 3, width: "100%", alignItems: "center" }}
-                  >
-                    <ScrollView
-                      onScroll={({ nativeEvent }) => onchange(nativeEvent)}
-                      horizontal
-                      showsHorizontalScrollIndicator={false}
-                      pagingEnabled
-                      bounces={false}
+            <View style={{ marginTop: 40, gap: 24 }}>
+              {menuTab === "geral" ? (
+                <View style={{ gap: 72 }}>
+                  <View style={{ gap: 16 }}>
+                    <Text style={{ fontWeight: "600" }}>Video</Text>
+                    <View
                       style={{
-                        width: width,
-                        height: "200px",
+                        flex: 1,
+                        backgroundColor: "#fff",
+                        height: 195,
                       }}
                     >
-                      {imagesArray.map((image, index) => (
-                        <Image
-                          key={index}
-                          source={{ uri: image }}
-                          resize="stretch"
-                          style={{ width: width, height: "200px" }}
-                        />
-                      ))}
-                    </ScrollView>
-                    <View style={{ flexDirection: "row", gap: "8px" }}>
-                      {imagesArray.map((image, index) => (
-                        <Text
-                          key={index}
-                          style={{
-                            color: imgActive === index ? "red" : "black",
-                            fontSize: "32px",
-                          }}
-                        >
-                          .
-                        </Text>
-                      ))}
+                      <YoutubeIFrame height={195} videoId={park.video} />
+                    </View>
+                  </View>
+                  <View style={{ gap: 16 }}>
+                    <Text style={{ fontWeight: "600" }}>Imagens do parque</Text>
+                    <View
+                      style={{ flex: 3, width: "100%", alignItems: "center" }}
+                    >
+                      <ScrollView
+                        onScroll={({ nativeEvent }) => onchange(nativeEvent)}
+                        scrollEventThrottle
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        pagingEnabled
+                        bounces={false}
+                        style={{
+                          width: width,
+                          height: 200,
+                        }}
+                      >
+                        {imagesArray.map((image, index) => (
+                          <Image
+                            key={index}
+                            source={{ uri: image }}
+                            resize="stretch"
+                            style={{ width: width, height: 200 }}
+                          />
+                        ))}
+                      </ScrollView>
+                      <View style={{ flexDirection: "row", gap: 8 }}>
+                        {imagesArray.map((image, index) => (
+                          <Text
+                            key={index}
+                            style={{
+                              color: imgActive === index ? "red" : "black",
+                              fontSize: 32,
+                            }}
+                          >
+                            .
+                          </Text>
+                        ))}
+                      </View>
+                    </View>
+                  </View>
+                  <View style={{ gap: 16 }}>
+                    <Text style={{ fontWeight: "600" }}>No mapa</Text>
+                    <View
+                      style={{
+                        flex: 1,
+                        backgroundColor: "#fff",
+                        height: 200,
+                      }}
+                    >
+                      <MapView region={mapRegion} style={{ height: 200 }}>
+                        <Marker coordinate={mapRegion} title="Marker" />
+                      </MapView>
                     </View>
                   </View>
                 </View>
-                <View>
-                  <Text>No mapa</Text>
-                  <MapView />
-                </View>
-              </>
-            ) : (
-              <>
-                <View>
-                  <Text style={{ fontWeight: "600" }}>Descrição</Text>
-                  <Text>{park.description}</Text>
-                </View>
-                <View>
-                  <Text style={{ fontWeight: "600" }}>Website</Text>
-                  <Text>{park.websiteLink}</Text>
-                </View>
-                <View>
-                  <Text style={{ fontWeight: "600" }}>Redes Sociais</Text>
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "600" }}>Instagram: </Text>
-                    <Text>{park.socialMediaLinks?.insta}</Text>
+              ) : (
+                <View style={{ gap: 72 }}>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>Descrição</Text>
+                    <Text>{park.description}</Text>
                   </View>
-                  <View style={{ flexDirection: "row" }}>
-                    <Text style={{ fontWeight: "600" }}>TikTok: </Text>
-                    <Text>{park.socialMediaLinks?.tiktok}</Text>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>Website</Text>
+                    <Text>{park.websiteLink}</Text>
+                  </View>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>Redes Sociais</Text>
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "600" }}>Instagram: </Text>
+                      <Text>{park.socialMediaLinks?.insta}</Text>
+                    </View>
+                    <View style={{ flexDirection: "row" }}>
+                      <Text style={{ fontWeight: "600" }}>TikTok: </Text>
+                      <Text>{park.socialMediaLinks?.tiktok}</Text>
+                    </View>
                   </View>
                 </View>
-              </>
-            )}
+              )}
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };

@@ -7,18 +7,19 @@ const SearchParkInput = ({ searchTerm, setSearchedPark }) => {
   const [searchedText, setSearchedText] = useState("");
 
   return (
-    <View style={{ flexDirection: "row", gap: "16px" }}>
+    <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
       <TextInput
         style={styles.searchInput}
         value={searchTerm}
         onChangeText={(text) => setSearchedText(text)}
         placeholder="Digite o nome do parque"
+        placeholderTextColor="#c4c5c8"
       />
       <TouchableOpacity
         style={styles.searchButton}
         onPress={() => setSearchedPark(searchedText)}
       >
-        <FontAwesome5 name="search" color="white" solid size="16px" />
+        <FontAwesome5 name="search" color="white" solid size={16} />
       </TouchableOpacity>
     </View>
   );

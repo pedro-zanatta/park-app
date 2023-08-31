@@ -2,12 +2,12 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   menuButton: (isActive) => ({
-    height: "40px",
-    width: "120px",
+    height: 40,
+    width: 120,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: isActive ? "red" : "#c4c5c8",
-    borderRadius: "8px",
+    borderRadius: 8,
   }),
 });
 
