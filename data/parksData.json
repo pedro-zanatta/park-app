@@ -14,7 +14,11 @@
     "ticketPrice": "de R$99,00 a R$ 134,00; a depender da data",
     "ticketLink": "https://www.betocarrero.com.br/passaportes?area=passaporte%22&gclid=EAIaIQobChMI5e2BzOvugAMVC1KRCh2nWgp4EAAYASAAEgIVp_D_BwE",
     "phone": "04732612222",
-    "email": "suporteonline@betocarrero.com.br" },
+    "email": "suporteonline@betocarrero.com.br",
+    "mapRegion": {"latitude": -26.799975,
+                  "longitude": -48.626860,
+                  "latitudeDelta": 0.0922,
+                  "longitudeDelta": 0.0421}},
 
     {"id": 2,
     "name": "Snow Land",
@@ -30,7 +34,11 @@
     "ticketPrice": "de R$ 120 à R$ 330",
     "ticketLink": "https://www.snowland.com.br/ingressos/",
     "phone": "08008003737",
-    "email": "eventos.parques@gramadoparks.com"},
+    "email": "eventos.parques@gramadoparks.com",
+    "mapRegion": {"latitude": -29.402827,
+                  "longitude": -50.932666,
+                  "latitudeDelta": 0.0922,
+                  "longitudeDelta": 0.0421}},
 
     {"id": 3,
     "name": "Aqua Show",
@@ -46,7 +54,11 @@
     "ticketPrice": "R$ 70 na bilheteria e R$ 65 virtual",
     "ticketLink": "https://www.aguashowpark.com.br/",
     "phone": "04833692354",
-    "email": "contato@aguashowpark.com.br " },
+    "email": "contato@aguashowpark.com.br ",
+    "mapRegion": {"latitude": -27.444733,
+                  "longitude": -48.419872,
+                  "latitudeDelta": 0.0922,
+                  "longitudeDelta": 0.0421}},
 
     {"id": 4,
     "name": "Parque Terra Mágica Florybal",
@@ -62,7 +74,12 @@
     "ticketPrice": "R$ 160",
     "ticketLink": "https://ingresso.parqueterramagicaflorybal.com.br/passaporte-terra-magica-florybal",
     "phone": "05432825050",
-    "email": "divulgacao@parqueterramagicaflorybal.com.br"},
+    "email": "divulgacao@parqueterramagicaflorybal.com.br",
+    "mapRegion": {"latitude": -29.348525,
+                  "longitude": -50.830352,
+                  "latitudeDelta": 0.0922,
+                  "longitudeDelta": 0.0421}},
+
 
     {"id": 5,
     "name": "Hopi Hari",
@@ -78,5 +95,10 @@
     "ticketPrice": "De R$ 129,90 à R$ 149,90",
     "ticketLink": "https://www.hopihari.com.br/calendario",
     "phone": "01142104000",
-    "email": "fale@hopiharicorp.com.br" }
+    "email": "fale@hopiharicorp.com.br",
+    "mapRegion": {"latitude": -23.098260,
+                  "longitude": -47.008263,
+                  "latitudeDelta": 0.0922,
+                  "longitudeDelta": 0.0421}}
+
   ]
