@@ -10,15 +10,12 @@ const ParkCard = ({
   fetchedIds,
 }) => {
   const isFavorite = fetchedIds?.includes(JSON.stringify(park.id));
-  console.log(isFavorite);
 
   const handleFavoriteClick = () => {
     if (isFavorite) {
       removeFavorite(park.id);
-      console.log("removed");
     } else {
       saveFavorite(park.id);
-      console.log("saved");
     }
   };
 

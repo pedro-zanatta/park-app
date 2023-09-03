@@ -38,7 +38,6 @@ const ParkDetails = () => {
   useEffect(() => {
     async function loadPark() {
       const park = await filteredData[0];
-      console.log(park);
       setPark(park);
       setIsLoading(false);
     }
@@ -60,7 +59,7 @@ const ParkDetails = () => {
     <SafeAreaView style={{ flex: 1 }}>
       <Stack.Screen
         options={{
-          headerStyle: { backgroundColor: "#dbdcde" },
+          headerStyle: { backgroundColor: "#3c5c9b" },
           headerShadowVisible: false,
           headerBackVisible: false,
           headerLeft: () => <HeaderBackButton onPress={() => router.back()} />,
@@ -91,20 +90,30 @@ const ParkDetails = () => {
                 flexDirection: "row",
                 gap: 8,
                 alignItems: "center",
-                marginTop: 20,
+                marginTop: 60,
+
+                justifyContent: "center",
               }}
             >
               <TouchableOpacity
                 style={styles.menuButton(menuTab === "geral")}
                 onPress={() => setMenuTab("geral")}
               >
-                <Text>Geral</Text>
+                <Text
+                  style={{ color: menuTab === "geral" ? "white" : "black" }}
+                >
+                  Geral
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.menuButton(menuTab === "contato")}
                 onPress={() => setMenuTab("contato")}
               >
-                <Text>Contato</Text>
+                <Text
+                  style={{ color: menuTab === "contato" ? "white" : "black" }}
+                >
+                  Contato
+                </Text>
               </TouchableOpacity>
             </View>
 
@@ -191,26 +200,39 @@ const ParkDetails = () => {
                   </View>
                   <View>
                     <Text style={{ fontWeight: "600" }}>Redes Sociais</Text>
-                    <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{ flexDirection: "row", width: "100%" }}
+                      numberOfLines={1}
+                    >
                       <Text style={{ fontWeight: "600" }}>Instagram: </Text>
-                      <Text>{park.socialMediaLinks?.insta}</Text>
+                      <Text>{park.insta}</Text>
                     </View>
                     <View style={{ flexDirection: "row" }}>
                       <Text style={{ fontWeight: "600" }}>TikTok: </Text>
-                      <Text>{park.socialMediaLinks?.tiktok}</Text>
+                      <Text>{park.tiktok}</Text>
                     </View>
                   </View>
                   <View>
-                    <Text style={{ fontWeight: "600" }}>Website</Text>
+                    <Text style={{ fontWeight: "600" }}>
+                      Horário de Funcionanemto
+                    </Text>
                     <Text>{park.time}</Text>
                   </View>
                   <View>
-                    <Text style={{ fontWeight: "600" }}>Website</Text>
+                    <Text style={{ fontWeight: "600" }}>Preço do ingresso</Text>
                     <Text>{park.ticketPrice}</Text>
                   </View>
                   <View>
-                    <Text style={{ fontWeight: "600" }}>Website</Text>
-                    <Text>{park.time}</Text>
+                    <Text style={{ fontWeight: "600" }}>Link do Ingresso</Text>
+                    <Text>{park.ticketLink}</Text>
+                  </View>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>Telefone</Text>
+                    <Text>{park.phone}</Text>
+                  </View>
+                  <View>
+                    <Text style={{ fontWeight: "600" }}>E-mail</Text>
+                    <Text>{park.email}</Text>
                   </View>
                 </View>
               )}

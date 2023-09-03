@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     width: 120,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: isActive ? "red" : "#c4c5c8",
+    backgroundColor: isActive ? "#3c5c9b" : "#c4c5c8",
     borderRadius: 8,
   }),
 });
