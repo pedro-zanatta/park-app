@@ -18,7 +18,6 @@ const jsonData = require("../data/parksData.json");
 const Home = () => {
   const router = useRouter();
   const [searchedPark, setSearchedPark] = useState("");
-  const [menuTab, setMenuTab] = useState("todos");
   const [fetchedIds, setFetchedIds] = useState();
   const handleCardPress = (item) => {
     router.push(`/park-details/${item.id}`);
@@ -34,14 +33,12 @@ const Home = () => {
 
   useEffect(() => {
     getFavorites();
-    console.log("mounted");
   }, []);
 
   const getFavorites = async () => {
     try {
       const ids = await AsyncStorage.getAllKeys();
       setFetchedIds(ids);
-      console.log(ids);
     } catch (error) {
       console.error("Error retrieving parsedIds:", error);
     }
@@ -50,7 +47,7 @@ const Home = () => {
   const saveFavorite = async (id) => {
     try {
       await AsyncStorage.setItem(JSON.stringify(id), JSON.stringify(id));
-      console.log(id, "id stored successfully");
+
       getFavorites();
     } catch (error) {
       console.error("Error storing id:");
@@ -60,7 +57,6 @@ const Home = () => {
   const removeFavorite = async (id) => {
     try {
       await AsyncStorage.removeItem(JSON.stringify(id));
-      console.log(id, "id removed successfully");
       getFavorites();
     } catch (error) {
       console.error("Error removing id:");
@@ -72,19 +68,21 @@ const Home = () => {
       <Stack.Screen
         options={{
           headerStyle: {
-            backgroundColor: "#dbdcde",
+            backgroundColor: "#3c5c9b",
           },
           contentStyle: {
             backgroundColor: "white",
             padding: 16,
+            paddingTop: 0,
           },
           headerShadowVisible: false,
           headerTitle: "",
+          headerBackVisible: false,
         }}
       />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ paddingBottom: 32 }}
+        style={{ paddingBottom: 32, paddingTop: 16 }}
       >
         <Text style={{ fontWeight: "600" }}>Procure um parque</Text>
         <View style={{ marginTop: 8 }}>
@@ -94,32 +92,6 @@ const Home = () => {
           />
 
           <View style={{ marginTop: 32, gap: 16 }}>
-            <View style={{ flexDirection: "row", gap: 8 }}>
-              <TouchableOpacity
-                style={styles.menuButton(menuTab === "todos")}
-                onPress={() => setMenuTab("todos")}
-              >
-                <Text
-                  style={{
-                    color: menuTab === "todos" ? "black" : "#c4c5c8",
-                  }}
-                >
-                  Todos
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.menuButton(menuTab === "aquaticos")}
-                onPress={() => setMenuTab("aquaticos")}
-              >
-                <Text
-                  style={{
-                    color: menuTab === "aquaticos" ? "black" : "#c4c5c8",
-                  }}
-                >
-                  Aquáticos
-                </Text>
-              </TouchableOpacity>
-            </View>
             <View style={{ marginTop: 32, gap: 32 }}>
               <Text style={{ fontWeight: "600" }}>Lista de parques</Text>
               <FlatList
