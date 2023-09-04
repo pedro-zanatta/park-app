@@ -18,6 +18,7 @@ const SearchParkInput = ({ searchTerm, setSearchedPark }) => {
       <TextInput
         style={styles.searchInput}
         value={searchTerm}
+        returnKeyType="search"
         onChangeText={(text) => setSearchedText(text)}
         placeholder="Digite o nome do parque"
         placeholderTextColor="#c4c5c8"

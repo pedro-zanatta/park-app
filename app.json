@@ -11,7 +11,7 @@
     "slug": "park-app",
     "icon": "./assets/logo.png",
     "splash": {
-      "image": "",
+      "image": "./assets/blue-background.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,6 +23,14 @@
         "projectId": "25bb80b5-ab1c-4325-8b58-35ee24586a31"
       }
     },
-    "owner": "devpedro123"
+    "owner": "devpedro123",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/25bb80b5-ab1c-4325-8b58-35ee24586a31"
+    },
+    "android": {},
+    "ios": {}
   }
 }
