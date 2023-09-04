@@ -25,7 +25,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "78a32064-37f4-4b11-a357-b0f39f085ba2"
+        "projectId": "5386a250-dc6f-4db9-814f-50139416ab7f"
       }
     },
     "owner": "devpedro123",
@@ -33,7 +33,7 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/78a32064-37f4-4b11-a357-b0f39f085ba2"
+      "url": "https://u.expo.dev/5386a250-dc6f-4db9-814f-50139416ab7f"
     },
     "android": {},
     "ios": {}
