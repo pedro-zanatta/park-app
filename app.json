@@ -8,7 +8,7 @@
       "expo-router"
     ],
     "name": "ParkSpot",
-    "slug": "park-spot",
+    "slug": "park-app",
     "icon": "./assets/logo.png",
     "splash": {
       "image": "",
