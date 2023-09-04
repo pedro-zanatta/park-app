@@ -78,6 +78,7 @@ const Home = () => {
           headerShadowVisible: false,
           headerTitle: "",
           headerBackVisible: false,
+          gestureEnabled: false,
         }}
       />
       <ScrollView
