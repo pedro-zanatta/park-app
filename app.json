@@ -9,6 +9,12 @@
     ],
     "name": "ParkSpot",
     "slug": "park-spot",
+    "icon": "./assets/logo.png",
+    "splash": {
+      "image": "",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "extra": {
       "router": {
         "origin": false
