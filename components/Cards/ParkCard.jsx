@@ -27,10 +27,10 @@ const ParkCard = ({
       >
         <View
           style={{
-            width: 100,
+            width: isHorizontal ? "100%" : 100,
             height: isHorizontal ? undefined : 120,
             flexDirection: isHorizontal ? "row" : "column",
-            gap: isHorizontal ? 8 : undefined,
+            gap: 8,
             alignItems: isHorizontal ? "center" : undefined,
           }}
         >
@@ -57,7 +57,7 @@ const ParkCard = ({
               {park?.name}
             </Text>
             <Text numberOfLines={1} style={{ color: "#8c8d8e" }}>
-              {park?.description}
+              {park?.cityState}
             </Text>
           </View>
         </View>

@@ -7,8 +7,8 @@
     "plugins": [
       "expo-router"
     ],
-    "name": "app",
-    "slug": "park-app",
+    "name": "ParkSpot",
+    "slug": "park-spot",
     "extra": {
       "router": {
         "origin": false
