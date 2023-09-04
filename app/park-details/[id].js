@@ -201,11 +201,12 @@ const ParkDetails = () => {
                         ))}
                       </ScrollView>
                       <View style={{ flexDirection: "row", gap: 8 }}>
-                        {imagesArray.map((image, index) => (
+                        {imagesArray.map((index) => (
                           <Text
                             key={index}
                             style={{
-                              color: imgActive === index ? "red" : "black",
+                              color:
+                                imgActive === index ? "#3c5c9b" : "#c4c5c8",
                               fontSize: 32,
                             }}
                           >
